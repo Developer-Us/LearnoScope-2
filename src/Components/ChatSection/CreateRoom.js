@@ -82,4 +82,3 @@ export default function CreateRoom() {
     </div>
   )
 }
-// api : makeNewChatRoom
