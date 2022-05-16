@@ -20,21 +20,20 @@ import Bookmark from './Bookmark';
 import YourVideoSection from './YourVideoSection';
 import History from './History';
 import SearchResult from './SearchResult';
+import Error404 from './Error404';
 
-
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route
+// } from "react-router-dom";
 
 
 function App() {
 
   return (
     <>
-      {/* <Vedionote/> */}
+      {/* <Vedionote/>
       <Router>
         <LoggedInStatusState>
           <UserDataState>
@@ -99,7 +98,9 @@ function App() {
             </ApplicationModeState>
           </UserDataState>
         </LoggedInStatusState>
-      </Router>
+      </Router> */}
+
+      <Error404/>
 
     </>
   );
