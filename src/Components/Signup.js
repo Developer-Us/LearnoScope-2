@@ -20,7 +20,7 @@ export default function Signup() {
   });
 
   return (
-    <div id="Signup" className="w-25 shadow p-3 mb-5 bg-body mx-auto my-5 " style={{ height: "58rem", display: "flex"}}>
+    <div id="Signup" className="w-25 shadow p-3 mb-5 bg-body mx-auto my-5 " style={{ height: "58rem", display: "flex" }}>
       <div className='container mx-3 my-3'>
         <form method="post" encType="multipart/form-data" action={`${userData.backendApi}/register/`}>
           <div id="Proflie_picture_selector" className="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
@@ -33,37 +33,42 @@ export default function Signup() {
           {/* profile_pic */}
           <div className="mb-3 my-3">
             <small className="mx-auto">Select Profile Picture</small>
-            <input name="profile_pic" type="file"  accept=".png, .jpg, .jpeg" className="form-control form-control-sm" placeholder="Select Profile Picture" />
+            <input name="profile_pic" type="file" required accept=".png, .jpg, .jpeg" className="form-control form-control-sm" placeholder="Select Profile Picture" />
           </div>
           <hr />
           {/* firstName */}
           <div className="mb-3">
             <label htmlFor="exampleFormControlInput1" className="label">First Name<span className="mandatory_sign">*</span></label>
-            <input name="firstName" type="text" className="form-control input_tag" />
+            <input name="firstName" type="text" className="form-control input_tag" required />
           </div>
           {/* lastName  */}
           <div className="mb-3">
             <label htmlFor="exampleFormControlInput1" className="label">Last Name<span className="mandatory_sign">*</span></label>
-            <input name="lastName" type="text" className="form-control input_tag" />
+            <input name="lastName" type="text" className="form-control input_tag" required />
           </div>
           {/* username  */}
           <div className="mb-3">
             <label htmlFor="exampleFormControlInput1" className="label">Username<span className="mandatory_sign">*</span></label>
-            <input name="username" type="text" className="form-control input_tag" />
+            <input name="username" type="text" className="form-control input_tag" required />
+          </div>
+          {/* phone no  */}
+          <div className="mb-3">
+            <label htmlFor="exampleFormControlInput1" className="label">Phone<span className="mandatory_sign">*</span></label>
+            <input name="phone" type="number" className="form-control input_tag" placeholder="+91XXXXXXXXXX" pattern="\+[0-9]{12}" required />
           </div>
           {/* email  */}
           <div className="mb-3">
             <label htmlFor="exampleFormControlInput1" className="label">Email<span className="mandatory_sign">*</span></label>
-            <input name="email" type="email" className="form-control input_tag" />
+            <input name="email" type="email" className="form-control input_tag" required />
           </div>
           {/* password  */}
           <div className="mb-3">
             <label htmlFor="exampleFormControlInput1" className="label">Password<span className="mandatory_sign">*</span></label>
-            <input name="password" type="password" className="form-control input_tag" />
+            <input name="password" type="password" className="form-control input_tag" required />
           </div>
           <div className="mb-3">
             <label htmlFor="exampleFormControlInput1" className="label">Confirm Password<span className="mandatory_sign">*</span></label>
-            <input type="password" className="form-control input_tag" />
+            <input type="password" className="form-control input_tag" required />
           </div>
           <div className='text-center'>
             <button id="Signup_btn" type="submit" className="btn btn-info my-3 btn_custom" style={{ "alignSelf": "center" }}>Create Account</button>

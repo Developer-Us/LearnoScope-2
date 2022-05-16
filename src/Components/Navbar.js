@@ -15,14 +15,13 @@ export default function Navbar() {
     const applicationMode = useContext(ApplicationModeContext);
     const userData = useContext(UserDataContext);
 
-    const toggleProfileOption = () => {
-        if (document.getElementById("profileDropdown").style.display === "none") {
-            document.getElementById("profileDropdown").style.display = "block";
-        }
-        else {
-            document.getElementById("profileDropdown").style.display = "none";
-        }
+    const dashboardMouseEnterEvent = () => {
+        document.getElementById("profileDropdown").style.display = "block";
     }
+    const dashboardMouseLeaveEvent = () => {
+        document.getElementById("profileDropdown").style.display = "none";
+    }
+
 
     //for user logout
     async function handleUserLogout() {
@@ -44,7 +43,7 @@ export default function Navbar() {
                 is_loggedin.setLoggedin(false);
                 document.getElementById("leftBar-LoginBtn").click();
                 document.getElementById("logoutAlert").style.display = "block";
-                toggleProfileOption();
+                // toggleProfileOption();
             }
             else {
                 alert(data.response);
@@ -169,14 +168,6 @@ export default function Navbar() {
                                         <path fillRule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
                                     </svg>
                                 </button>
-
-
-                                <input id='SearchBar' className="Search_Bar form-control-customize me-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button id="SearchIcon" className={applicationMode.mode === "light" ? "btn btn-outline-dark p-2" : "btn btn-outline-light p-2"} type="button" onClick={SearchHandle}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                    </svg>
-                                </button>
                             </form>
                         </div>
                         <div className="d-flex justify-content-between my-auto">
@@ -190,12 +181,12 @@ export default function Navbar() {
 
                             {/* user Dashboard/menu */}
                             <div className="mx-2" id='UserDashBoard'>
-                                <svg xmlns="http://www.w3.org/2000/svg" style={{ "cursor": "pointer" }} onClick={toggleProfileOption} width="30" height="30" fill={applicationMode.mode === "dark" ? "white" : "dark"} className="bi bi-person-circle" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" style={{ "cursor": "pointer" }} onMouseEnter={dashboardMouseEnterEvent} width="30" height="30" fill={applicationMode.mode === "dark" ? "white" : "dark"} className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                     <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                                 </svg>
 
-                                <div id="profileDropdown" className="card my-2 shadow p-3 mb-5 bg-body" style={{ "height": "auto", "width": "10rem", "position": "absolute", "zIndex": 5, "right": 11, "display": "none" }}>
+                                <div id="profileDropdown" onMouseLeave={dashboardMouseLeaveEvent} className="card my-2 shadow p-3 mb-5 bg-body" style={{ "height": "auto", "width": "10rem", "position": "absolute", "zIndex": 5, "right": 11, "display": "none" }}>
                                     <div id="profileDropdownBox" className="card-body">
                                         <Link to="/login" style={{ textDecoration: "none", listStyle: "none", color: "black" }}>
                                             <p className="userProfileOptions">
@@ -267,17 +258,13 @@ export default function Navbar() {
 
                             {/* user Dashboard/menu */}
                             <div className="mx-2" id='UserDashBoard'>
-                                {/* <svg xmlns="http://www.w3.org/2000/svg" style={{ "cursor": "pointer" }} onClick={toggleProfileOption} width="30" height="30" fill={applicationMode.mode === "dark" ? "white" : "dark"} className="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                                    <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                                </svg> */}
-                                <img src="Images/hill.jpg" id="dashboard-user-profile-pic" height="32" width="32" alt="" style={{ borderRadius: "50%", cursor: "pointer" }} onClick={toggleProfileOption} />
+                                <img src="Images/hill.jpg" id="dashboard-user-profile-pic" height="32" width="32" alt="" style={{ borderRadius: "50%", cursor: "pointer" }} onMouseEnter={dashboardMouseEnterEvent} />
 
-                                <div id="profileDropdown" className="card my-2 shadow p-3 mb-5 bg-body" style={{ "height": "auto", "width": "10rem", "position": "absolute", "zIndex": 5, "right": 11, "display": "none" }}>
+                                <div id="profileDropdown" onMouseLeave={dashboardMouseLeaveEvent} className="card my-2 shadow p-3 mb-5 bg-body" style={{ "height": "auto", "width": "10rem", "position": "absolute", "zIndex": 5, "right": 11, "display": "none" }}>
                                     <div id="profileDropdownBox" className="card-body">
                                         <Link to="/userProfile" style={{ textDecoration: "none", color: "black" }}>
                                             <p className="userProfileOptions">
-                                                Your Profile
+                                                My Profile
                                             </p>
                                         </Link>
                                         <p onClick={handleUserLogout} id="userProfileOption-Logout" className="userProfileOptions">
@@ -291,5 +278,6 @@ export default function Navbar() {
                 </nav>
             </div>
         )
+        // 
     }
 }

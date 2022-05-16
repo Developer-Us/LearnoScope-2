@@ -3,12 +3,9 @@
     padding:0px;
     margin:0px;
 }
-#outerContainer{
-margin-left: 50px;
-border:3px solid rgb(105, 209, 105);
-height:100vh;
-width:25%;
-display:flex;
-align-items: center;
-justify-content: center;
+#addLogo1:hover{
+color:blue;
+}
+#addLogo:hover{
+color:blue;
 }

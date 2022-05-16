@@ -18,7 +18,18 @@ const UserDataState = (props) => {
 
     let [searchQuery, setSearchQuery] = useState("");
 
+    let [notificationMsg, setNotificationMsg] = useState("logged in successfull :)");
 
+
+    // for user profile
+    let [userProfilePhotoLink, setUserProfilePhotoLink] = useState("");
+    let [firstName, setFirstName] = useState("");
+    let [lastName, setLastName] = useState("");
+    let [uploadCount, setUploadCount] = useState("");
+    let [seenCount, setSeenCount] = useState("");
+    let [bookmarkCount, setBookmarkCount] = useState("");
+    let [dateJoined, setDateJoined] = useState("");
+    
     const backendApi = "http://127.0.0.1:8000";
 
     const state = {
@@ -60,8 +71,35 @@ const UserDataState = (props) => {
 
         //search Query
         "searchQuery": searchQuery,
-        "setSearchQuery": setSearchQuery
+        "setSearchQuery": setSearchQuery,
+
+        //notification message
+        "notificationMsg": notificationMsg,
+        "setNotificationMsg": setNotificationMsg,
+
+        //user profile photo
+        "userProfilePhotoLink":userProfilePhotoLink,
+        "setUserProfilePhotoLink":setUserProfilePhotoLink,
+
+        "firstName":firstName,
+        "setFirstName":setFirstName,
+
+        "lastName":lastName,
+        "setLastName":setLastName,
+
+        "uploadCount":uploadCount,
+        "setUploadCount":setUploadCount,
+
+        "seenCount":seenCount,
+        "setSeenCount":setSeenCount,
+
+        "bookmarkCount":bookmarkCount,
+        "setBookmarkCount":setBookmarkCount,
+
+        "dateJoined":dateJoined,
+        "setDateJoined":setDateJoined
     }
+    
 
 
     return (

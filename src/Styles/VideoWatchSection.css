@@ -104,10 +104,11 @@
   }
   .QuizSection {
     border: 1px solid black;
-    height: 80%;
+    height: 94%;
     width: 25%;
     margin: 10px;
-    display: none; 
+    overflow: auto;
+    /* display: block;  */
   }
   
   

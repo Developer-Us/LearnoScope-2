@@ -33,7 +33,11 @@ export default function VideoCard(props) {
     }
 
     const addToBookmark = (id) => {
-        document.getElementById(`addBookmarkSvg${id}`).style.color = "rgb(19, 124, 237)";
+        document.getElementById(`addBookmarkBtn${id}`).innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="rgb(19, 124, 237)" class="bi bi-bookmark-fill" viewBox="0 0 16 16">
+                            <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+                        </svg>
+        `;
         asyncAddToBookmark(id);
     }
 
@@ -120,7 +124,6 @@ export default function VideoCard(props) {
                     </span>
 
                 </div>
-
             </div>
 
         )

@@ -87,13 +87,14 @@ export default function VideoFeed() {
     return (
         <div>
             <div id="GreetingAlert" style={{ display: "none" }} className="alert alert-primary alert-dismissible fade show" role="alert">
-                <strong id="usernameForGreet"> </strong>&nbsp;Logged in Successfully :)
+                <strong id="usernameForGreet"> </strong>&nbsp;
+                {userData.notificationMsg}
                 <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <div id="wishUser" style={{ display: "none" }} className="text-center container my-3 mx-auto p-3 mb-5 fs-2"><span id="wishUser-time"></span> <strong id="wishUser-username"></strong> !</div>
             <div className="d-flex my-5" style={{ flexWrap: "wrap", justifyContent: "center" }}>
                 {loading && is_loggedin.loggedin && <Spinner />}
-                {!is_loggedin.loggedin && <LandingInterface/>}
+                {!is_loggedin.loggedin && <LandingInterface />}
                 {
                     !loading &&
                     vidArray.map((val) => {
@@ -109,6 +110,5 @@ export default function VideoFeed() {
 
 
     )
-
 
 }
