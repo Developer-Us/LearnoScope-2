@@ -1,6 +1,5 @@
 import '../Styles/Vedionote.css'
 export default function Notesdata(props){
-
 return(
 <>
 <div className="card" style={{marginLeft:"20px",marginTop:"10px",width:"18rem",height:"10rem"}}>

@@ -1,14 +1,10 @@
 import React from "react";
 import '../Styles/Signup.css';
 import { useContext } from "react";
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 import UserDataContext from '../Context/UserData/UserDataContext';
-
-
 export default function Signup() {
   const userData = useContext(UserDataContext);
-
-
   useEffect(() => {
     let windowWidth = window.matchMedia("(min-width: 1077px)");
     if (windowWidth.matches) {
@@ -18,7 +14,6 @@ export default function Signup() {
       document.getElementById("Signup").className = "w-75 shadow p-3 mb-5 bg-body mx-auto my-5 t";
     }
   });
-
   return (
     <div id="Signup" className="w-25 shadow p-3 mb-5 bg-body mx-auto my-5 " style={{ height: "58rem", display: "flex"}}>
       <div className='container mx-3 my-3'>
@@ -75,4 +70,5 @@ export default function Signup() {
       </div>
     </div>
   );
+
 }
