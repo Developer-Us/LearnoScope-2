@@ -10,19 +10,40 @@ import ReminderCard from '../Components/ReminderCard'
 
 
 export default function VideoWatchSection() {
+  const applicationMode = useContext(ApplicationModeContext);
     const is_loggedin = useContext(LoggedInStatusContext);
-    const applicationMode = useContext(ApplicationModeContext);
     const userData = useContext(UserDataContext);
     const [currTimeSec, setCurrTime] = useState(0);
     useEffect(() => {
         if (applicationMode.mode === "light") {
-            document.getElementById("Video_metadata").style.color = "black";
+            document.getElementById("Video_metadata").style.color = "#282828";
+            document.getElementById("accordion_item").style.backgroundColor = "white";
+            document.getElementById("accordion_item").style.borderColor = "#282828";
+            document.getElementById("accordian_body").style.color = "#282828";
+            document.getElementById("notes").style.color = "#282828";
+            document.getElementById("notes").style.borderColor = "#282828";
         }
         else {
             document.getElementById("Video_metadata").style.color = "white";
+            document.getElementById("accordion_item").style.backgroundColor = "#282828";
+            document.getElementById("accordion_item").style.borderColor = "white";
+            document.getElementById("accordian_body").style.color = "white";  
+            document.getElementById("notes").style.color = "gray";
+            document.getElementById("notes").style.borderColor = "white";
         }
         if (localStorage.getItem("userEmail") !== null) {
             is_loggedin.setLoggedin(true);
+        }
+
+        if (userData.currentVideoChannelName === "") {
+            userData.setCurrentVideoLink(localStorage.getItem("CurrentVideoLink"));
+            userData.setCurrentVideoTitle(localStorage.getItem("CurrentVideoTitle"));
+            userData.setCurrentVideoChannelName(localStorage.getItem("CurrentVideoChannelName"));
+            userData.setCurrentVideoLikes(localStorage.getItem("CurrentVideoLikes"));
+            userData.setCurrentSno(localStorage.getItem("CurrentSno"));
+            userData.setCurrentVideoDesc(localStorage.getItem("CurrentVideoDesc"));
+            userData.setCurrentVideoNotes(localStorage.getItem("CurrentVideoNotes"));
+            userData.setCurrentVideoChannelPhoto(localStorage.getItem("CurrentVideoChannelPhoto"));
         }
     })
 
@@ -53,11 +74,35 @@ export default function VideoWatchSection() {
 
     let setReminder = () => {
         console.log("clicked reminder btn");
-        document.getElementById("VideoWatchSection").style.display="none";
-        document.getElementById("ReminderCard").style.display="block";
+        document.getElementById("VideoWatchSection").style.display = "none";
+        document.getElementById("ReminderCard").style.display = "block";
     }
 
+   let reportVideo = ()=>{
+       console.log("clicked report btn");
+       asyncReportVideo(userData.currentSno);
+   }
 
+   async function asyncReportVideo(sno) {
+    let userObject = {
+        "sno": sno,
+        "email": localStorage.getItem("userEmail")
+    }
+    await fetch(`${userData.backendApi}/reportVideo/`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userObject),
+    }).then(response => response.json()).then((data) => {
+        if (data.status === 200) {
+         alert(data.response);
+        }
+        else {
+         alert(data.response);
+        }
+    })
+}
     //Functions for handling hover effect for like, share ...btns
     const DisplayLikeText = () => {
         document.getElementById("likeBtnText").style.display = "block";
@@ -66,12 +111,12 @@ export default function VideoWatchSection() {
         document.getElementById("likeBtnText").style.display = "none";
     }
 
-    const DisplayShareText = () => {
-        document.getElementById("shareBtnText").style.display = "block";
-    }
-    const HideShareText = () => {
-        document.getElementById("shareBtnText").style.display = "none";
-    }
+    // const DisplayShareText = () => {
+    //     document.getElementById("shareBtnText").style.display = "block";
+    // }
+    // const HideShareText = () => {
+    //     document.getElementById("shareBtnText").style.display = "none";
+    // }
 
     const DisplayWatchLaterText = () => {
         document.getElementById("wlBtnText").style.display = "block";
@@ -116,19 +161,22 @@ export default function VideoWatchSection() {
                                     <p className="likeCountText" id="likeBtnText">{userData.currentVideoLikes} Likes</p>
                                 </span>
 
-                                <span style={{ display: "flex", flexDirection: "column" }}>
-                                    {/* sharebutton  */}
+                                {/* <span style={{ display: "flex", flexDirection: "column" }}>
+                                    sharebutton 
                                     <svg xmlns="http://www.w3.org/2000/svg" onMouseEnter={DisplayShareText} onMouseLeave={HideShareText} style={{ height: "35px", width: "35px", margin: "5px 10px" }} fill="currentColor" className="VideoMetaBtn bi bi-send-fill" viewBox="0 0 16 16">
                                         <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
                                     </svg>
-                                    <p id="shareBtnText">Share</p></span>
+                                    <p id="shareBtnText">Share</p>
+                                    </span> */}
+
                                 <span onClick={setReminder} style={{ display: "flex", flexDirection: "column" }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" onMouseEnter={DisplayWatchLaterText} onMouseLeave={HideWatchLaterText} style={{ height: "35px", width: "35px", margin: "5px 10px" }} fill="currentColor" className="VideoMetaBtn bi bi-watch" viewBox="0 0 16 16">
                                         <path d="M8.5 5a.5.5 0 0 0-1 0v2.5H6a.5.5 0 0 0 0 1h2a.5.5 0 0 0 .5-.5V5z" />
                                         <path d="M5.667 16C4.747 16 4 15.254 4 14.333v-1.86A5.985 5.985 0 0 1 2 8c0-1.777.772-3.374 2-4.472V1.667C4 .747 4.746 0 5.667 0h4.666C11.253 0 12 .746 12 1.667v1.86a5.99 5.99 0 0 1 1.918 3.48.502.502 0 0 1 .582.493v1a.5.5 0 0 1-.582.493A5.99 5.99 0 0 1 12 12.473v1.86c0 .92-.746 1.667-1.667 1.667H5.667zM13 8A5 5 0 1 0 3 8a5 5 0 0 0 10 0z" />
                                     </svg>
                                     <p id="wlBtnText">Remind me</p></span>
-                                <span style={{ display: "flex", flexDirection: "column" }}>
+                              
+                                <span onClick={reportVideo} style={{ display: "flex", flexDirection: "column" }}>
                                     {/* reportbutton */}
                                     <svg xmlns="http://www.w3.org/2000/svg" onMouseEnter={DisplayReportText} onMouseLeave={HideReportText} style={{ height: "35px", width: "35px", margin: "5px 10px" }} fill="currentColor" className="VideoMetaBtn bi bi-shield-fill-exclamation" viewBox="0 0 16 16">
                                         <path fillRule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm-.55 8.502L7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0zM8.002 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
@@ -138,7 +186,7 @@ export default function VideoWatchSection() {
                         </div>
 
                         <div className="accordion" id="accordionExample" >
-                            <div className="accordion-item">
+                            <div id="accordion_item" className="accordion-item">
                                 <h2 className="accordion-header">
                                     <button className="accordion-button ChannelInfo" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         <div className="ChannelPic"><img src={userData.currentVideoChannelPhoto} style={{ borderRadius: "50%" }} height="50px" width="50px" alt=".." /></div>
@@ -146,7 +194,7 @@ export default function VideoWatchSection() {
                                     </button>
                                 </h2>
                                 <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div className="accordion-body">
+                                    <div id="accordian_body" className="accordion-body">
                                         <strong>Description : </strong>
                                         <br />
                                         {userData.currentVideoDesc}
@@ -160,7 +208,7 @@ export default function VideoWatchSection() {
 
                     </div>
 
-                    <div className="my-2 QuizSection">
+                    <div id="notes" className="my-2 QuizSection">
                         <h3 style={{ padding: "8px" }} >Add Your Notes Here : </h3>
                         <div style={{ display: "flex", justifyContent: "center" }}>
                             <Vedionote cuTime={currTimeSec} setTime={setTimeHere} />
@@ -169,9 +217,9 @@ export default function VideoWatchSection() {
 
                 </div>
             </div>
-            
+
             <div className='d-flex justify-content-center my-4'>
-            <ReminderCard/>
+                <ReminderCard />
             </div>
 
         </>

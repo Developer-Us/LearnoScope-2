@@ -22,6 +22,16 @@ export default function VideoCard(props) {
                 userData.setCurrentVideoDesc((userData.videoFeedData[i].video_desc));
                 userData.setCurrentVideoNotes((userData.videoFeedData[i].notes_file));
                 userData.setCurrentVideoChannelPhoto((userData.videoFeedData[i].video_uploader_img));
+
+                localStorage.setItem("CurrentVideoLink", `${userData.backendApi}` + (userData.videoFeedData[i].video_file));
+                localStorage.setItem("CurrentVideoTitle", (userData.videoFeedData[i].title));
+                localStorage.setItem("CurrentVideoChannelName", (userData.videoFeedData[i].channelName));
+                localStorage.setItem("CurrentVideoLikes", (userData.videoFeedData[i].video_likes));
+                localStorage.setItem("CurrentSno", (userData.videoFeedData[i].sno));
+                localStorage.setItem("CurrentVideoDesc", (userData.videoFeedData[i].video_desc));
+                localStorage.setItem("CurrentVideoNotes", (userData.videoFeedData[i].notes_file));
+                localStorage.setItem("CurrentVideoChannelPhoto", (userData.videoFeedData[i].video_uploader_img));
+
                 //for increasing video views
                 increaseViewCount(userData.videoFeedData[i].sno);
 
@@ -131,7 +141,7 @@ export default function VideoCard(props) {
     else {
         return (
             <Link to="/login" style={{ textDecoration: "none", color: "black" }} >
-                <div className="videoCard card my-3 mx-3 shadow  bg-body rounded" style={{ "width": "21rem" }}>
+                <div className="videoCard card my-3 mx-3 shadow  bg-body rounded" style={{ "width": "21rem" }} >
                     <div style={{ "width": "21rem", "height": "12rem", backgroundColor: "grey" }}>
                         <img src={props.videoThumbnail} alt="loading.." style={{ "width": "21rem", "height": "12rem" }} />
                     </div>

@@ -20,7 +20,7 @@ import Bookmark from './Bookmark';
 import YourVideoSection from './YourVideoSection';
 import History from './History';
 import SearchResult from './SearchResult';
-
+import Error404 from './Error404';
 
 
 import {
@@ -31,9 +31,9 @@ import {
 
 
 function App() {
-
+ 
   return (
-    <>
+    <div style={{"cursor":"url('cursor/cursor.png'),auto"}}>
       {/* <Vedionote/> */}
       <Router>
         <LoggedInStatusState>
@@ -94,6 +94,9 @@ function App() {
                   <Route exact path="/searchResult">
                     <SearchResult />
                   </Route>
+                  <Route>
+                    <Error404 />
+                  </Route>
                 </Switch>
               </div>
             </ApplicationModeState>
@@ -101,7 +104,7 @@ function App() {
         </LoggedInStatusState>
       </Router>
 
-    </>
+    </div>
   );
 }
 

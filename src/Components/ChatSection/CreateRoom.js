@@ -24,7 +24,13 @@ export default function CreateRoom() {
     else if (document.getElementById('create-roomPass').value.length === 0) {
       alert('Room Pass field Cannot be empty');
     }
-    else {
+    else if(document.getElementById('create-conf-roomPass').value.length === 0){
+      alert('Room Pass field Cannot be empty');
+    }
+    else if(document.getElementById('create-conf-roomPass').value !== document.getElementById('create-roomPass').value ){
+      alert('Please confirm your password again !');
+    }
+    else{
       createNewRoom();
     }
   }

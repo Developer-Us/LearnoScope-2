@@ -16,12 +16,12 @@ export default function Upload() {
 
         if (applicationMode.mode === "light")
         {
-            document.getElementById("in1").style.color = "black";
-            document.getElementById("in2").style.color = "black";
+            document.getElementById("in1").style.color = "#282828";
+            document.getElementById("in2").style.color = "#282828";
             document.getElementById("Ved_1").style.border = "none";
             document.getElementById("card").style.backgroundColor = "white";
             document.getElementById("card").style.transition = "all 1s ease-out";
-            document.getElementById("in3").style.color = "black";
+            document.getElementById("in3").style.color = "#282828";
             document.getElementById("card_2").style.backgroundColor = "white";
             document.getElementById("card_2").style.transition = "all 1s ease-out";
 
@@ -31,10 +31,10 @@ export default function Upload() {
             document.getElementById("in1").style.color = "white";
             document.getElementById("in2").style.color = "white";
             document.getElementById("Ved_1").style.border = "solid 2px";
-            document.getElementById("card").style.backgroundColor = "black";
+            document.getElementById("card").style.backgroundColor = "#282828";
             document.getElementById("card").style.transition = "all 1s ease-out";
             document.getElementById("in3").style.color = "white";
-            document.getElementById("card_2").style.backgroundColor = "black";
+            document.getElementById("card_2").style.backgroundColor = "#282828";
             document.getElementById("card_2").style.transition = "all 1s ease-out";
         }
     })
@@ -110,19 +110,19 @@ export default function Upload() {
                     <div className="card" id="card_2"style={{ width: "98.7vw", height: "100vh" }}>
                         <div className="mb-3" style={{ marginTop: "20px", width: "98%", paddingLeft: "20px" }}>
                             <label htmlFor="email" className="form-label">Email</label>
-                            <input type="email" className="form-control" id="email" defaultValue={localStorage.getItem("userEmail")} name="email"  />
+                            <input type="email" className="form-control" id="email" defaultValue={localStorage.getItem("userEmail")} name="email" required />
                         </div>
                         <div className="mb-3" style={{ marginTop: "20px", width: "98%", paddingLeft: "20px" }}>
                             <label htmlFor="keyword" className="form-label">Keywords</label>
-                            <input type="text" className="form-control" id="keyword" placeholder="Enter keywords" name="keywords" />
+                            <input type="text" className="form-control" id="keyword" placeholder="Enter keywords" name="keywords" required/>
                         </div>
                         <div className="mb-3" style={{ marginTop: "20px", width: "98%", paddingLeft: "20px" }}>
                             <label htmlFor="thumnail" className="form-label">Select the Thumnail</label>
-                            <input type="file"  accept=".png, .jpg, .jpeg" id="thumnail" className="form-control" name=" thumbnail" />
+                            <input type="file"  accept=".png, .jpg, .jpeg" id="thumnail" className="form-control" name=" thumbnail" required/>
                         </div>
                         <div className="mb-3" style={{ marginTop: "20px", width: "98%", paddingLeft: "20px" }}>
                             <label htmlFor="notes" className="form-label">Select the note file</label>
-                            <input type="file" accept=".pdf" id="notes" className="form-control" name="notesFile" />
+                            <input type="file" accept=".pdf" id="notes" className="form-control" name="notesFile" required />
                             <button id="uploadbtn" type="submit" className="btn btn-primary my-5" >Upload</button>
                         </div>
                     </div>

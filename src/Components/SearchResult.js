@@ -4,11 +4,13 @@ import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Spinner from './Spinner';
+import ApplicationModeContext from '../Context/ApplicationMode/ApplicationModeContext';
 import LoggedInStatusContext from '../Context/LoggedInStatus/LoggedInStatusContext';
 import VideoCard from './VideoCard';
 
 let vidArray = [];
 export default function SearchResult() {
+  // const applicationMode = useContext(ApplicationModeContext);
   const userData = useContext(UserDataContext);
   const [loading, setLoading] = useState(true);
   const is_loggedin = useContext(LoggedInStatusContext);
@@ -19,10 +21,19 @@ export default function SearchResult() {
     () => {
       if (localStorage.getItem("userEmail") !== null) {
         is_loggedin.setLoggedin(true);
+        userData.setSearchQuery( localStorage.getItem("searchQuery"))
       }
+      // if (applicationMode.mode === "light")
+      // {
+      //   document.getElementById("heading").style.color = "#282828";
+      // }
+      // else
+      // {
+      //   document.getElementById("heading").style.color = "white";
+      // }
       function searchVideoData() {
         let userObject = {
-          "search_string": userData.searchQuery,
+          "search_string":  localStorage.getItem("searchQuery"),
           "email": localStorage.getItem("userEmail")
         }
 
@@ -75,7 +86,7 @@ export default function SearchResult() {
       <div className="my-4">
         <div className="my-4 ms-l-5">
           <div className="text-center fs-2 mb-2">
-            <h2 className="text-center my-4">Search Results for <i>"{userData.searchQuery}"</i></h2>
+            <h2 id="heading" className="text-center my-4">Search Results for <i>"{userData.searchQuery}"</i></h2>
           </div>
         </div>
 

@@ -94,6 +94,7 @@ export default function Navbar() {
         else {
             if (document.getElementById("SearchBar").value.length !== 0) {
                 userData.setSearchQuery(document.getElementById("SearchBar").value);
+                localStorage.setItem("searchQuery",document.getElementById("SearchBar").value);
                 document.getElementById("redirectToSearchResult").click();
             }
             else {

@@ -1,8 +1,27 @@
 import React from 'react';
 import "../Styles/LandingInterface.css";
 import { Link } from 'react-router-dom';
+import ApplicationModeContext from '../Context/ApplicationMode/ApplicationModeContext';
+import { useEffect } from 'react';
+import { useContext } from 'react';
 
 export default function LandingInterface() {
+  const applicationMode = useContext(ApplicationModeContext);
+  useEffect(() => {
+  if (applicationMode.mode === "dark")
+  {
+    document.getElementById("features_title").style.color = "Lightblue";
+    document.getElementById("Team_title").style.color = "Lightblue";
+    document.getElementById("team").style.backgroundColor = "#282828";
+  }
+  else
+  {
+    document.getElementById("features_title").style.color = "#010483";
+    document.getElementById("Team_title").style.color = "#010483";
+    document.getElementById("team").style.backgroundColor = "white";
+  }
+})
+
   return (
     <>
       {/* Hero Section */}
@@ -51,12 +70,12 @@ YOU CAN SOLVE THE RESPONSIVENESS PROBLEM AND UNCOMMENT IT :)
       <main id="main">
         {/* Features Section */}
         
-        {/* <section id="features" className="features mx-5 d-flex">
+        <section id="features" className="features mx-5 d-flex">
           <div className="">
 
             <div className="section-title">
               <h2>Features</h2>
-              <p>Objectives</p>
+              <p id="features_title">Objectives</p>
             </div>
 
             <div className="w-100 d-flex justify-content-evenly">
@@ -89,9 +108,93 @@ YOU CAN SOLVE THE RESPONSIVENESS PROBLEM AND UNCOMMENT IT :)
             </div>
 
           </div>
-        </section> */}
+        </section>
 
         {/* End Features Section */}
+
+{/* <!-- ======= Team Section ======= --> */}
+<section id="team" className="team">
+  <div className="container">
+
+    <div className="section-title">
+      <h2>Team</h2>
+      <p id="Team_title">Team LearnoScope</p>
+    </div>
+
+    <div className="row d-flex justify-content-center">
+
+      <div className="col-lg-3 col-md-6  my-3">
+        <div className="member" data-aos-delay="100">
+          <div className="pic"><img src="Images/Madhukrishna.png"  height="306" width="306"  className="img-fluid" alt=""/></div>
+          <div className="member-info">
+            <h4>Madhukrishna Nipankar</h4>
+            <span>Full Stack Developer</span>
+            <div className="social">
+              <a href="https://www.instagram.com/lets__growtogether/?hl=en" target="blank"><i className="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/madhukrishna-nipankar-666771213/" target="blank"><i className="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="col-lg-3 col-md-6 my-3">
+        <div className="member"data-aos-delay="100">
+          <div className="pic"><img src="Images/Vedant.png" height="306" width="306" className="img-fluid" alt=""/></div>
+          <div className="member-info">
+            <h4>Vedant Kulkarni</h4>
+            <span>Front End Developer/Software Tester</span>
+            <div className="social">
+              <a href="https://instagram.com/_.vedantt.fy?igshid=YmMyMTA2M2Y/" target="blank"><i className="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/vedant-kulkarni-406798213/" target="blank"><i className="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div className="col-lg-3 col-md-6 my-3">
+        <div className="member" data-aos-delay="200">
+          <div className="pic"><img src="Images/Amit.png"  height="306" width="306" className="img-fluid" alt=""/></div>
+          <div className="member-info">
+            <h4>Amit Sali</h4>
+            <span>Front End Developer</span>
+            <div className="social">
+              <a href="https://www.instagram.com/amit_sali/?hl=en" target="blank"><i className="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/amit-sali-52a307193" target="blank"><i className="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-lg-3 col-md-6  my-3">
+        <div className="member" data-aos-delay="300">
+          <div className="pic"><img src="Images/Yadhnesh.png" className="img-fluid" alt=""/></div>
+          <div className="member-info">
+            <h4>Yadhnesh Gangurde</h4>
+            <span>Front End Developer</span>
+            <div className="social">
+              <a href="https://www.linkedin.com/in/yadhnesh-gangurde-7842251b8" target="blank"><i className="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="col-lg-3 col-md-6  my-3">
+        <div className="member" data-aos-delay="400">
+          <div className="pic"><img src="Images/Kiran.png" className="img-fluid" alt=""/></div>
+          <div className="member-info">
+            <h4>Kiran Dahake</h4>
+            <span>Backend Developer</span>
+            <div className="social">
+              <a href="https://instagram.com/sam_pamru?igshid=YmMyMTA2M2Y=" target="blank"><i className="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/kiran-dahake-82548720a" target="blank"><i className="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+{/*<!-- End Team Section --> */}
 
       </main>
 

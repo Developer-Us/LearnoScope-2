@@ -15,7 +15,7 @@ export default function Chatting() {
     for (let i = 0; i < userData.roomMessages.length; i++) {
         messages += `<div class="card shadow-lg p-3 mb-3 bg-body rounded" id="message">
                   <span class='senderName'>${userData.roomMessages[i].username}</span>
-                  <span class="timestampOfMessage"><small>${userData.roomMessages[i].timestamp}</small></span>
+                  <span class="timestampOfMessage"><small>${(userData.roomMessages[i].timestamp).split("T")[0]}</small></span>
                   <hr />
                   <div>
                       ${userData.roomMessages[i].value}
@@ -61,6 +61,7 @@ export default function Chatting() {
      document.getElementById("messageInput").value = "";
       }
     });
+    updateData();
   }
 
   let updateChat = {
@@ -92,8 +93,8 @@ catch(error){
 }
   }
    
-  setInterval(updateData,5000);
- 
+  // setInterval(updateData,5000);
+  
   
 
   return (

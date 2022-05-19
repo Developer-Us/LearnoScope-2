@@ -368,9 +368,6 @@ section {
 /*--------------------------------------------------------------
 # Features
 --------------------------------------------------------------*/
-.features{
-  width: 1471px;
-}
 .features .icon-box {
   
   display: flex;
@@ -581,15 +578,13 @@ section {
 /*--------------------------------------------------------------
 # Team
 --------------------------------------------------------------*/
-.team {
-  background: #fff;
-}
 .team .member {
   text-align: center;
   margin-bottom: 80px;
   position: relative;
 }
 .team .member .pic {
+  background-color: lightgray;
   border-radius: 4px;
   overflow: hidden;
 }
