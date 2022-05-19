@@ -3,7 +3,7 @@ import '../Styles/Login.css';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Spinner from './Spinner';
 // contexts 
@@ -83,6 +83,7 @@ export default function Login() {
             {loading && <Spinner />}
             {!loading &&
                 <div>
+                 <Link to='/login'><div id="divinLogin"></div></Link>
                     <div id="logoutAlert" style={{ display: "none" }} className="alert alert-info alert-dismissible fade show" role="alert">
                         Logged out Successfully :)
                         <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -113,7 +114,9 @@ export default function Login() {
                             </form>
                         </div>
                     </div>
-                </div>}
+                </div>
+               
+                }
         </>
 
     )
