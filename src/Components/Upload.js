@@ -5,12 +5,10 @@ import ApplicationModeContext from '../Context/ApplicationMode/ApplicationModeCo
 import LoggedInStatusContext from '../Context/LoggedInStatus/LoggedInStatusContext';
 import UserDataContext from '../Context/UserData/UserDataContext';
 
-
 export default function Upload() {
     const applicationMode = useContext(ApplicationModeContext);
     const is_loggedin = useContext(LoggedInStatusContext);
     const userData = useContext(UserDataContext);
-
     useEffect(() => {
         if (localStorage.getItem("userEmail") !== null) {
             is_loggedin.setLoggedin(true);

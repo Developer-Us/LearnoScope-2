@@ -1,12 +1,11 @@
-import React from "react";
+import React,{useContext} from "react";
 import "../Styles/OTP.css";
-
+import UserDataContext from '../Context/UserData/UserDataContext';
 export default function OTP() {
-
-  var mail = "amit@mail.com";
+// var mail = "amit@mail.com";
   // display user mail 
-
-  document.addEventListener("DOMContentLoaded", function (event) {
+  const userData = useContext(UserDataContext);
+   document.addEventListener("DOMContentLoaded", function (event) {
     function OTPInput() {
       const inputs = document.querySelectorAll("#otp > *[id]");
       for (let i = 0; i < inputs.length; i++) {
@@ -33,13 +32,38 @@ export default function OTP() {
     OTPInput();
     // logical code to move cursor to forward input box in OTP section
   });
+async function chkOtp(){
+  var str="";
+  str+=document.getElementById('first').value;
+  str+=document.getElementById('second').value;
+  str+=document.getElementById('third').value;
+  str+=document.getElementById('fourth').value;
+  str+=document.getElementById('fifth').value;
+  console.log(str);
+  let userObject = {
+    "otp":str,
+    "email": "gangurdeyadhnesh28@gmail.com"
+}
+  await fetch(`${userData.backendApi}/verifyEmail/`, {
+    method: "POST",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userObject),
+  }).then(response => response.json()).then((data) => {
+    console.log(data);
+    console.log(str);
+    //document.getElementById('divinLogin').click()
+  })
+  
+}
 
   return (
     <>
       <div className="Otp_Section container h-100 d-flex mx-auto my-auto">
           <div className="otp_card shadow-lg card p-2 text-center mx-auto">
             <h4 className="otp_head">Please enter the one time password to verify your account</h4>
-            <span>A code has been sent to <span className="email_id">{mail}</span></span>
+            <span>A code has been sent to <span className="email_id">gangurdeyadhnesh28@gmail.com</span></span>
             <div id="otp" className="inputs d-flex flex-row justify-content-center mt-2">
               {/* inp m-2 text-center form-control rounded */}
               <input className="inp text-center form-control rounded" id="first" type="text" maxlength="1" max="9" min="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
@@ -47,16 +71,16 @@ export default function OTP() {
               <input className="inp text-center form-control rounded" id="third" type="text" maxlength="1" max="9" min="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
               <input className="inp text-center form-control rounded" id="fourth" type="text" maxlength="1" max="9" min="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
               <input className="inp text-center form-control rounded" id="fifth" type="text" maxlength="1" max="9" min="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
-              <input className="inp text-center form-control rounded" id="sixth" type="text" maxlength="1" max="9" min="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
               {" "}
+            
             </div>
 
             <div className="mt-4">
               {" "}
-              <button className="btn px-4 validate">Validate</button>
+              <button onClick={chkOtp} className="btn px-4 validate">Validate</button>
             </div>
           </div>
       </div>
     </>
   );
-}
+  }

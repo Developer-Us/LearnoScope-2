@@ -29,7 +29,7 @@ const UserDataState = (props) => {
     let [seenCount, setSeenCount] = useState("");
     let [bookmarkCount, setBookmarkCount] = useState("");
     let [dateJoined, setDateJoined] = useState("");
-    
+    let [signUpMail, setSignUpMail] = useState("");
     const backendApi = "http://127.0.0.1:8000";
 
     const state = {
@@ -39,7 +39,8 @@ const UserDataState = (props) => {
         "setRoomMessages": setRoomMessages,
         "videoFeedData": videoFeedData,
         "setVideoFeedData": setVideoFeedData,
-
+        "signUpMail":signUpMail,
+        "setSignUpMail":setSignUpMail,
         //for video watch section data
         "currentVideoLink": currentVideoLink,
         "setCurrentVideoLink": setCurrentVideoLink,

@@ -1,14 +1,10 @@
 import React from "react";
 import '../Styles/Signup.css';
 import { useContext } from "react";
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 import UserDataContext from '../Context/UserData/UserDataContext';
-
-
 export default function Signup() {
   const userData = useContext(UserDataContext);
-
-
   useEffect(() => {
     let windowWidth = window.matchMedia("(min-width: 1077px)");
     if (windowWidth.matches) {
@@ -18,7 +14,6 @@ export default function Signup() {
       document.getElementById("Signup").className = "w-75 shadow p-3 mb-5 bg-body mx-auto my-5 t";
     }
   });
-
   return (
     <div id="Signup" className="w-25 shadow p-3 mb-5 bg-body mx-auto my-5 " style={{ height: "58rem", display: "flex" }}>
       <div className='container mx-3 my-3'>
@@ -59,7 +54,7 @@ export default function Signup() {
           {/* email  */}
           <div className="mb-3">
             <label htmlFor="exampleFormControlInput1" className="label">Email<span className="mandatory_sign">*</span></label>
-            <input name="email" type="email" className="form-control input_tag" required />
+            <input name="email" type="email" className="form-control input_tag" onChange={(e)=>{userData.setSignUpMail(e.target.value)}} required />
           </div>
           {/* password  */}
           <div className="mb-3">
@@ -80,4 +75,5 @@ export default function Signup() {
       </div>
     </div>
   );
+
 }
