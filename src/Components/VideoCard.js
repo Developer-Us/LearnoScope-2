@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import LoggedInStatusContext from '../Context/LoggedInStatus/LoggedInStatusContext';
 import UserDataContext from '../Context/UserData/UserDataContext';
+import '../Styles/Spinner.css';
 
 export default function VideoCard(props) {
     const is_loggedin = useContext(LoggedInStatusContext);
@@ -112,7 +113,7 @@ export default function VideoCard(props) {
 
     if (is_loggedin.loggedin === true) {
         return (
-            <div id={props.sno} className="videoCard card my-3 mx-3 shadow  bg-body rounded" style={{ "width": "21rem" }}>
+            <div id={props.sno} className="videoCard my-3 mx-3" style={{ "width": "21rem" }}>
                 <Link to="/videoWatchSection" style={{ textDecoration: "none", color: "black" }} >
 
                     <div onClick={() => { handleVideoCardClick(props.sno) }} style={{ "width": "21rem", "height": "12rem", backgroundColor: "grey" }}>
@@ -159,4 +160,3 @@ export default function VideoCard(props) {
         )
     }
 }
-
