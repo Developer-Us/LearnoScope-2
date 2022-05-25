@@ -54,7 +54,7 @@ export default function Signup() {
           {/* email  */}
           <div className="mb-3">
             <label htmlFor="exampleFormControlInput1" className="label">Email<span className="mandatory_sign">*</span></label>
-            <input name="email" type="email" className="form-control input_tag" onChange={(e)=>{userData.setSignUpMail(e.target.value)}} required />
+            <input name="email" type="email" id="emailvalid" className="form-control input_tag" onChange={(e)=>{userData.setSignUpMail(e.target.value)}} required />
           </div>
           {/* password  */}
           <div className="mb-3">

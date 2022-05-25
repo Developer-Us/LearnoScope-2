@@ -1,7 +1,7 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import '../Styles/VideoWatchSection.css';
-import { useContext } from 'react';
+import { useContext} from 'react';
 import LoggedInStatusContext from '../Context/LoggedInStatus/LoggedInStatusContext';
 import ApplicationModeContext from '../Context/ApplicationMode/ApplicationModeContext';
 import UserDataContext from '../Context/UserData/UserDataContext';
@@ -13,7 +13,7 @@ export default function VideoWatchSection() {
   const applicationMode = useContext(ApplicationModeContext);
     const is_loggedin = useContext(LoggedInStatusContext);
     const userData = useContext(UserDataContext);
-    const [currTimeSec, setCurrTime] = useState(0);
+    
     useEffect(() => {
         if (applicationMode.mode === "light") {
             document.getElementById("Video_metadata").style.color = "#282828";
@@ -103,6 +103,12 @@ export default function VideoWatchSection() {
         }
     })
 }
+   const pauseOnNoteCreation=()=>{
+  document.getElementById('ActualVideo').pause();
+   }
+   const playOnNoteCreation=()=>{
+    document.getElementById('ActualVideo').play();
+     }
     //Functions for handling hover effect for like, share ...btns
     const DisplayLikeText = () => {
         document.getElementById("likeBtnText").style.display = "block";
@@ -131,9 +137,12 @@ export default function VideoWatchSection() {
     const HideReportText = () => {
         document.getElementById("reportBtnText").style.display = "none";
     }
-    const setTimeHere = () => {
-        setCurrTime(document.getElementById('ActualVideo').currentTime)
-    }
+    // const setTimeHere = () => {
+    //    setCurrTime(document.getElementById('ActualVideo').currentTime)
+    // }
+    // const setVideo=(val)=>{
+    //   document.getElementById('ActualVideo').currentTime = 50
+    // }
     return (
         <>
             <div id="VideoWatchSection" className="VideoWatchSection">
@@ -211,7 +220,7 @@ export default function VideoWatchSection() {
                     <div id="notes" className="my-2 QuizSection">
                         <h3 style={{ padding: "8px" }} >Add Your Notes Here : </h3>
                         <div style={{ display: "flex", justifyContent: "center" }}>
-                            <Vedionote cuTime={currTimeSec} setTime={setTimeHere} />
+                            <Vedionote pauseVid={pauseOnNoteCreation} playVid={playOnNoteCreation}/>
                         </div>
                     </div>
 
