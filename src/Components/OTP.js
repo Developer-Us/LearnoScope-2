@@ -42,7 +42,7 @@ async function chkOtp(){
   console.log(str);
   let userObject = {
     "otp":str,
-    "email": "gangurdeyadhnesh28@gmail.com"
+    "email": document.getElementById('emailvalid').value//"gangurdeyadhnesh28@gmail.com"
 }
   await fetch(`${userData.backendApi}/verifyEmail/`, {
     method: "POST",
@@ -51,8 +51,11 @@ async function chkOtp(){
     },
     body: JSON.stringify(userObject),
   }).then(response => response.json()).then((data) => {
-    console.log(data);
-    console.log(str);
+    console.log(data.status);
+    if(data.status!==200)
+    {
+      alert("Sorry!!! You entered wrong OTP :( ")
+    }
     //document.getElementById('divinLogin').click()
   })
   
